@@ -1,1 +1,1 @@
-cd ~/dev/gatherer & source venv/bin/activate & cd scraper/mindbender & scrapy crawl mindbender -o output.jl
+source ~/dev/gatherer/venv/bin/activate & cd ~/dev/gatherer/scraper/mindbender & scrapy crawl mindbender -o output.jl
