@@ -5,6 +5,24 @@ function isValidDomain(domain) {
 
 function displayUserMessage(message){
     document.getElementById('user-message').innerHTML = message
+    document.getElementById('user-message').style.display = "block"
+}
+
+function hideUserMessage(){
+    document.getElementById('user-message').style.display = "none"
+}
+
+function newSearchResultLine(text, number){
+    return `<li class="list-group-item d-flex justify-content-between align-items-center">
+            ${text}
+            <span class="badge bg-primary rounded-pill">${number}</span>
+    </li>`
+}
+
+function displaySearchResults(){
+    output = ""
+    output += newSearchResultLine("brenda@example.com", 12)
+    document.getElementById('search-results').innerHTML = output
 }
 
 function search() {
@@ -32,14 +50,25 @@ function search() {
       "results": [
         {
           "email": "example@domain.com",
-          "url_found": "domain.com/contact"
+          "urls_found_at": [
+            "domain.com/contact",
+            "domain.com/about",
+            "someblog.com/article-123"
+            ]
         },
         {
           "email": "test@domain.com",
-          "url_found": "domain.com/about"
+          "urls_found_at": [
+             "domain.com/about",
+             "domain.com/slacshsh"
+          ]
         }
       ]
     }
+
+    hideUserMessage()
+
+    displaySearchResults()
 
 
 }
