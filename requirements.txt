@@ -5,3 +5,5 @@ Scrapy
 pymongo
 itemadapter
 lxml
+fake-useragent
+email-validator
