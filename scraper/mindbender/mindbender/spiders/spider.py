@@ -33,7 +33,7 @@ class SpiderClass(scrapy.Spider):
 
         create_dirs(html_saves_dir, json_saves_dir, csv_saves_dir)
 
-        df = pd.read_csv(Path(f'./{input_csv_name}') , index_col=0)
+        df = pd.read_csv(Path(f'./{input_csv_name}')) # , index_col=0)
         self.urls = df[url_column_name].to_list()
 
         self.meta = {
@@ -43,7 +43,7 @@ class SpiderClass(scrapy.Spider):
         client = pymongo.MongoClient(
             "mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
         db = client.gatherer
-        self.email_collection = db.emailtest  # TODO: change this for prod
+        self.email_collection = db.email
 
 
     def start_requests(self):
