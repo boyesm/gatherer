@@ -2,11 +2,18 @@
   "results": [
     {
       "email": "example@domain.com",
-      "url_found": "domain.com/contact"
+      "urls_found_at": [
+        "domain.com/contact",
+        "domain.com/about",
+        "someblog.com/article-123"
+        ]
     },
     {
       "email": "test@domain.com",
-      "url_found": "domain.com/about"
+      "urls_found_at": [
+         "domain.com/about",
+         "domain.com/slacshsh"
+      ]
     }
   ]
 }
