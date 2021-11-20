@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "email": "example@domain.com",
+      "url_found": "domain.com/contact"
+    },
+    {
+      "email": "test@domain.com",
+      "url_found": "domain.com/about"
+    }
+  ]
+}
