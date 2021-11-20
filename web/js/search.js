@@ -29,46 +29,51 @@ function search() {
     // get domain from textbox
     let domain = document.getElementById('domain-search-box').value
 
-    // basic validitation
-    // const isValidDomain = require("is-valid-domain")  // use this on the endpoint to validate domain before searching!!!
-    if(!isValidDomain(domain)){
-        // false, display message to user
-        displayUserMessage("Domain is invalid")
-        return
-    }
+    fetch(`/.netlify/functions/test?domain=${domain}`)
+        .then(r => r.text())
+        .then(rt => JSON.parse(rt))
+        .then(obj => displayUserMessage(obj.domain))
 
-    // if true, send request to endpoint
-    displayUserMessage("Searching...")
-
-    // use domain to hit endpoint, output is json
-    // fetch(`domain.com/api/?${domain}`)
-    //     .then(json_text => JSON.parse(json_text))
-    //     .then() // create a list of all the unique emails for a given domain
-    //     .then() // generate the html
-
-    let obj = {
-      "results": [
-        {
-          "email": "example@domain.com",
-          "urls_found_at": [
-            "domain.com/contact",
-            "domain.com/about",
-            "someblog.com/article-123"
-            ]
-        },
-        {
-          "email": "test@domain.com",
-          "urls_found_at": [
-             "domain.com/about",
-             "domain.com/slacshsh"
-          ]
-        }
-      ]
-    }
-
-    hideUserMessage()
-
-    displaySearchResults()
+    // // basic validitation
+    // // const isValidDomain = require("is-valid-domain")  // use this on the endpoint to validate domain before searching!!!
+    // if(!isValidDomain(domain)){
+    //     // false, display message to user
+    //     displayUserMessage("Domain is invalid")
+    //     return
+    // }
+    //
+    // // if true, send request to endpoint
+    // displayUserMessage("Searching...")
+    //
+    // // use domain to hit endpoint, output is json
+    // // fetch(`domain.com/api/?${domain}`)
+    // //     .then(json_text => JSON.parse(json_text))
+    // //     .then() // create a list of all the unique emails for a given domain
+    // //     .then() // generate the html
+    //
+    // let obj = {
+    //   "results": [
+    //     {
+    //       "email": "example@domain.com",
+    //       "urls_found_at": [
+    //         "domain.com/contact",
+    //         "domain.com/about",
+    //         "someblog.com/article-123"
+    //         ]
+    //     },
+    //     {
+    //       "email": "test@domain.com",
+    //       "urls_found_at": [
+    //          "domain.com/about",
+    //          "domain.com/slacshsh"
+    //       ]
+    //     }
+    //   ]
+    // }
+    //
+    // hideUserMessage()
+    //
+    // displaySearchResults()
 
 
 }
