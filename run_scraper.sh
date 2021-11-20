@@ -1,0 +1,1 @@
+source venv/bin/activate & cd scraper/mindbender & scrapy crawl mindbender -o output.jl
