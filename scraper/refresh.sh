@@ -1,0 +1,2 @@
+git pull https://boyesm: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@github.com/boyesm/gatherer.git master
+#cd / && source /airflow-env/bin/activate && pip3 install -r /srv/airflow/new_dags/requirements.txt

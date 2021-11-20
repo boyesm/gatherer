@@ -1,0 +1,7 @@
+requests
+pandas
+beautifulsoup4
+Scrapy
+pymongo
+itemadapter
+lxml
