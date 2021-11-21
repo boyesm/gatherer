@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "email-deep-validator": "^3.3.0",
+    "email-validator": "^2.0.4",
     "is-valid-domain": "^0.1.4",
     "mongodb": "^4.2.0"
   }
