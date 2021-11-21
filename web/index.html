@@ -1,107 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gatherer</title>
+    <link rel="icon" href="gatherer-logo-transparent.png" type="image/png">
 
     <!-- bootstrap code -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/search.js"></script>
 </head>
-<body>
-<title>Gatherer</title>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"
-                 class="d-inline-block align-text-top">
-            Bootstrap
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<body style="margin-top: 60px;">
+    <title>Gatherer</title>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="overflow: hidden; background-color: #333; position: fixed; top: 0; width: 100%; border: 2px solid; border-radius: 15px; z-index: 99;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="gatherer-logo-transparent.png" alt="" width="30" height="30" class="d-inline-block align-text-top"> Gatherer
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#use-cases">Use Cases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts">Contact Us!</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div class="container-fluid p-5 " style="background-color: #ff0000;">
+    <div id="headline" class="container-fluid p-5" style="background-color: #379683;">
 
-    <div class="mb-5">
-        <h1>Headline</h1>
-        <h3>We do x, y, and z</h3>
-    </div>
+        <div class="mb-5">
+            <h1>Headline</h1>
+            <h3>We do x, y, and z</h3>
+        </div>
 
-    <div class="input-group mb-3 w-75">
-        <input id="domain-search-box" type="text" class="form-control" placeholder="Domain name"
-               aria-label="Domain name"
-               aria-describedby="button-addon2">
-        <button class="btn btn-secondary" type="button" id="button-addon2" onclick="search()">Search
+        <div class="input-group mb-3 w-75">
+            <input id="domain-search-box" type="text" class="form-control" placeholder="Domain name" aria-label="Domain name" aria-describedby="button-addon2">
+            <button class="btn btn-secondary" type="button" id="button-addon2" onclick="search()">Search
         </button>
+        </div>
+
+        <div class="alert alert-danger w-75" role="alert" id="user-message" style="display: none;">
+        </div>
+
+        <ul id="search-results" class="list-group w-50">
+        </ul>
+
     </div>
+    <div id="about" class="container-fluid p-5 column" style="background-color: #5CDB95; padding-top: 300;">
+        <h1>About</h1>
 
-    <div class="alert alert-danger w-75" role="alert" id="user-message" style="display: none;">
+        <div style="display:flex; justify-content: center;">
+            <img src="/Images/Scotia.png" alt="" width="300" height="150" class="d-inline-block align-text-top row" style="border:2px solid black; margin: 25px 200px 25px 25px;">
+            <img src="/Images/amazon.png" alt="" width="300" height="150" class="d-inline-block align-text-top" style="border:2px solid black; margin: 25px 25px 25px 25px;">
+            <img src="/Images/western.png" alt="" width="300" height="150 " class="d-inline-block align-text-top row" style="border:2px solid black; margin: 25px 25px 25px 200px;">
+        </div>
+
+        <div class="row">
+            <div class="col" style="margin: 25px 150px 25px 25px;">
+                Scotiabank
+            </div>
+            <div class="col" style="margin: 25px 25px 25px 25px;">
+                Amazon
+            </div>
+            <div class="col" style="margin: 25px 25px 25px 150px;">
+                Western
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="margin: 25px 150px 25px 25px;">
+                187 List Of Contacts
+            </div>
+            <div class="col" style="margin: 25px 25px 25px 25px;">
+                134 List Of Contacts
+            </div>
+            <div class="col" style="margin: 25px 25px 25px 150px;">
+                58 List Of Contacts
+            </div>
+        </div>
+
     </div>
+    <div id="features" class="container-fluid p-5" style="background-color: #6fe79d; padding-top: 60px;">
+        <h1>Features</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius, ligula sit amet viverra consequat, mauris dui convallis justo, nec molestie velit massa vitae turpis. Nunc a lacus id erat accumsan rutrum. Nulla facilisi. Donec tempor accumsan risus,
+            non rutrum erat tincidunt nec. Vivamus commodo dui at efficitur auctor. Donec molestie rhoncus consectetur. Suspendisse egestas purus nunc. Duis rhoncus rhoncus velit, eget commodo dolor dictum consectetur. Quisque euismod est sit amet dui
+            ullamcorper rhoncus. Curabitur elementum sapien quis lacus semper pharetra. Nam ac purus malesuada, pellentesque neque fringilla, convallis mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus
+            eget sollicitudin leo. Pellentesque nec sapien lacinia, finibus augue a, gravida ligula.
+        </p>
+        <p>
+            Quisque at ligula sodales, lobortis nibh sed, fermentum ipsum. In et venenatis enim, rutrum aliquam magna. Aenean gravida, lacus porta pretium porttitor, massa nibh pharetra nisl, vitae mollis nulla ligula feugiat nulla. Fusce libero dolor, lacinia a
+            magna consequat, hendrerit molestie dolor. Pellentesque ut odio ante. Mauris sem massa, egestas in iaculis at, varius eget nibh. Nulla facilisi.
+        </p>
+    </div>
+    <div id="use-cases" class="container-fluid p-5" style="background-color: #16db65;">
+        <h1>Use Cases</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius, ligula sit amet viverra consequat, mauris dui convallis justo, nec molestie velit massa vitae turpis. Nunc a lacus id erat accumsan rutrum. Nulla facilisi. Donec tempor accumsan risus,
+            non rutrum erat tincidunt nec. Vivamus commodo dui at efficitur auctor. Donec molestie rhoncus consectetur. Suspendisse egestas purus nunc. Duis rhoncus rhoncus velit, eget commodo dolor dictum consectetur. Quisque euismod est sit amet dui
+            ullamcorper rhoncus. Curabitur elementum sapien quis lacus semper pharetra. Nam ac purus malesuada, pellentesque neque fringilla, convallis mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus
+            eget sollicitudin leo. Pellentesque nec sapien lacinia, finibus augue a, gravida ligula.
+        </p>
+        <p>
+            Quisque at ligula sodales, lobortis nibh sed, fermentum ipsum. In et venenatis enim, rutrum aliquam magna. Aenean gravida, lacus porta pretium porttitor, massa nibh pharetra nisl, vitae mollis nulla ligula feugiat nulla. Fusce libero dolor, lacinia a
+            magna consequat, hendrerit molestie dolor. Pellentesque ut odio ante. Mauris sem massa, egestas in iaculis at, varius eget nibh. Nulla facilisi.
+        </p>
+    </div>
+    <div id="contacts" class="container-fluid p-5" style="background-color: #379683;">
+        <h1>Contact us</h1>
+        <p>
+            Quisque at ligula sodales, lobortis nibh sed, fermentum ipsum. In et venenatis enim, rutrum aliquam magna. Aenean gravida, lacus porta pretium porttitor, massa nibh pharetra nisl, vitae mollis nulla ligula feugiat nulla. Fusce libero dolor, lacinia a
+            magna consequat, hendrerit molestie dolor. Pellentesque ut odio ante. Mauris sem massa, egestas in iaculis at, varius eget nibh. Nulla facilisi.
+        </p>
+    </div>
+    <div id="bottom" class="container-fluid p-5" style="background-color: #05386B; align-items: center; text-align: center; padding: 20;">
 
-    <ul id="search-results" class="list-group w-50">
-    </ul>
+        <a href="#">Back to top</a>
 
-</div>
-<div class="container-fluid p-5" style="background-color: #009999;">
-    <h1>Features</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius, ligula sit amet viverra consequat, mauris
-        dui convallis justo, nec molestie velit massa vitae turpis. Nunc a lacus id erat accumsan rutrum. Nulla
-        facilisi. Donec tempor accumsan risus, non rutrum erat tincidunt nec. Vivamus commodo dui at efficitur auctor.
-        Donec molestie rhoncus consectetur. Suspendisse egestas purus nunc. Duis rhoncus rhoncus velit, eget commodo
-        dolor dictum consectetur. Quisque euismod est sit amet dui ullamcorper rhoncus. Curabitur elementum sapien quis
-        lacus semper pharetra. Nam ac purus malesuada, pellentesque neque fringilla, convallis mi. Vestibulum ante ipsum
-        primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus eget sollicitudin leo. Pellentesque
-        nec sapien lacinia, finibus augue a, gravida ligula.
-    </p>
-    <p>
-        Quisque at ligula sodales, lobortis nibh sed, fermentum ipsum. In et venenatis enim, rutrum aliquam magna.
-        Aenean gravida, lacus porta pretium porttitor, massa nibh pharetra nisl, vitae mollis nulla ligula feugiat
-        nulla. Fusce libero dolor, lacinia a magna consequat, hendrerit molestie dolor. Pellentesque ut odio ante.
-        Mauris sem massa, egestas in iaculis at, varius eget nibh. Nulla facilisi.
-    </p>
-</div>
-<div class="container-fluid p-5" style="background-color: #ff00ff;">
-    <h1>Use Cases</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius, ligula sit amet viverra consequat, mauris
-        dui convallis justo, nec molestie velit massa vitae turpis. Nunc a lacus id erat accumsan rutrum. Nulla
-        facilisi. Donec tempor accumsan risus, non rutrum erat tincidunt nec. Vivamus commodo dui at efficitur auctor.
-        Donec molestie rhoncus consectetur. Suspendisse egestas purus nunc. Duis rhoncus rhoncus velit, eget commodo
-        dolor dictum consectetur. Quisque euismod est sit amet dui ullamcorper rhoncus. Curabitur elementum sapien quis
-        lacus semper pharetra. Nam ac purus malesuada, pellentesque neque fringilla, convallis mi. Vestibulum ante ipsum
-        primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus eget sollicitudin leo. Pellentesque
-        nec sapien lacinia, finibus augue a, gravida ligula.
-    </p>
-    <p>
-        Quisque at ligula sodales, lobortis nibh sed, fermentum ipsum. In et venenatis enim, rutrum aliquam magna.
-        Aenean gravida, lacus porta pretium porttitor, massa nibh pharetra nisl, vitae mollis nulla ligula feugiat
-        nulla. Fusce libero dolor, lacinia a magna consequat, hendrerit molestie dolor. Pellentesque ut odio ante.
-        Mauris sem massa, egestas in iaculis at, varius eget nibh. Nulla facilisi.
-    </p>
-</div>
-
+    </div>
 </body>
+
 </html>
