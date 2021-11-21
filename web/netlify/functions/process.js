@@ -1,5 +1,7 @@
 exports.handler = async (event) => {
 
+    console.log("function has started!")
+
     const WordsNinjaPack = require("wordsninja")
     const WordsNinja = new WordsNinjaPack();
     await WordsNinja.loadDictionary();
