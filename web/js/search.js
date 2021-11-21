@@ -13,7 +13,7 @@ function hideUserMessage() {
 }
 
 function newSearchResultLine(text, number) {
-    return `<li class="list-group-item d-flex justify-content-between align-items-center">
+    return `<li class="list-group-item d-flex justify-content-between align-items-center p-3">
             ${text}
             <span class="badge bg-primary rounded-pill">${number}</span>
     </li>`
@@ -63,7 +63,7 @@ async function search() {
         // console.log(rt)
         await obj.results.forEach(
             element => {
-                output += newSearchResultLine(element.email, element.n_appearances)
+                output += newSearchResultLine(element.email, element.type) // element.n_appearances)
             }
         )
         document.getElementById('search-results').innerHTML = output

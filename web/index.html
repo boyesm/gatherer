@@ -42,34 +42,39 @@
     </div>
 </nav>
 
-<div class="container-fluid p-5 " style="background-color: #ff0000;">
+<div class="container-fluid p-5" style="background-color: #ff0000;">
 
     <div class="mb-5">
         <h1>Headline</h1>
         <h3>We do x, y, and z</h3>
     </div>
 
-    <div class="input-group mb-3 w-75">
-        <input id="domain-search-box" type="text" class="form-control" placeholder="Domain name"
-               aria-label="Domain name"
-               aria-describedby="button-addon2">
-        <button class="btn btn-secondary" type="button" id="domain-search-button" onclick="search()">
-            Search
-        </button>
-    </div>
+    <div class="container-fluid" style="max-width: 800px; width:100%;padding:0;">
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <div class="input-group">
+                    <input id="domain-search-box" type="text" class="form-control p-3" placeholder="Domain name"
+                           aria-label="Domain name"
+                           aria-describedby="button-addon2"
+                            style="border-radius:0px;">
+                    <button class="btn btn-secondary" type="button" id="domain-search-button" onclick="search()" style="border-radius:0px;">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <div class="alert alert-danger w-75" role="alert" id="user-message" style="display: none;">
-    </div>
+        <div class="alert alert-danger mt-3" role="alert" id="user-message" style="display: none;">
+        </div>
 
-    <ul id="search-results" class="list-group w-50">
-    </ul>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <ul id="search-results" class="list-group" style="border-radius:0px;">
         </ul>
-    </nav>
+    </div>
+
+    <!--    <ul class="pagination">-->
+    <!--        <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+    <!--        <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+    <!--    </ul>-->
 
 </div>
 <div class="container-fluid p-5" style="background-color: #009999;">
