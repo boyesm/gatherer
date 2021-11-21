@@ -10,7 +10,7 @@ exports.handler = async (event) => {
         for (let i = 0; i < names.first.length; i++) {
             // console.log(typeof(email))
             // console.log(email)
-            if (email.indexOf(names.first[i].toLowerCase()) != -1) {
+            if (email.includes(names.first[i].toLowerCase())) {
                 return "personal";
             }
             ;
