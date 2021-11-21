@@ -19,20 +19,48 @@ function newSearchResultLine(text, number){
     </li>`
 }
 
-function displaySearchResults(){
-    output = ""
-    output += newSearchResultLine("brenda@example.com", 12)
-    document.getElementById('search-results').innerHTML = output
-}
 
-function search() {
+async function search() {
     // get domain from textbox
     let domain = document.getElementById('domain-search-box').value
 
-    fetch(`/.netlify/functions/test?domain=${domain}`)
-        .then(r => r.text())
-        .then(rt => JSON.parse(rt))
-        .then(obj => displayUserMessage(obj.domain))
+    let req = await fetch(`/.netlify/functions/test?domain=${domain}`)
+
+    // get data from database
+    // end point will return either an error or a list of domains
+
+    console.log(req)
+
+    let rt = await req.text()
+    let obj = await JSON.parse(rt)
+
+    if(req.status != 200){
+
+        // display message from
+        displayUserMessage(`Error: ${obj.message}`)
+        return
+
+    } else {
+
+        // hide user message? hideUserMessage()
+
+        // display all enteries
+        output = ""
+        obj.results.forEach(
+            element => {
+                output += newSearchResultLine(element.email, element.n_appearences)
+            }
+        )
+        document.getElementById('search-results').innerHTML = output
+
+    }
+
+
+
+
+        // .then(r => r.text())
+        // .then(rt => JSON.parse(rt))
+        // .then(obj => displayUserMessage(obj.domain))
 
     // // basic validitation
     // // const isValidDomain = require("is-valid-domain")  // use this on the endpoint to validate domain before searching!!!
