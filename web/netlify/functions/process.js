@@ -138,8 +138,8 @@ exports.handler = async (event) => {
         let results = []
 
         let leng
-        if (sortable.length > 100) {
-            leng = 100;
+        if (sortable.length > 500) {
+            leng = 500;
         } else {
             leng = sortable.length
         }
