@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "is-valid-domain": "^0.1.4"
+    "is-valid-domain": "^0.1.4",
+    "mongodb": "^4.2.0"
   }
 }
