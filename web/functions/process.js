@@ -1,5 +1,12 @@
 exports.handler = async (event) => {
 
+    // const EmailValidator = require('email-deep-validator');
+    //
+    // const emailValidator = new EmailValidator();
+    // const { wellFormed, validDomain, validMailbox } = await emailValidator.verify('foo@email.com');
+    //
+    // console.log(`is this  a valid email? ${validMailbox} ${validDomain}`);
+
     function isPersonalOrGeneric(email) {
 
         const names = {
@@ -55,7 +62,7 @@ exports.handler = async (event) => {
     try {
         await client.connect();
         const dbo = client.db("gatherer")
-        const emails = dbo.collection("emailtest");
+        const emails = dbo.collection("email");
         console.log("Connected successfully to server");
         console.log(domain)
         const options = {

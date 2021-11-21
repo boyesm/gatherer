@@ -3,6 +3,20 @@ function isValidDomain(domain) {
     return pattern.test(domain)
 }
 
+function newSearchResultLine(text, number) {
+    return `<li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            ${text}
+            <span class="badge bg-primary rounded-pill">${number}</span>
+    </li>`
+}
+
+function demoSearch() {
+    document.getElementById('domain-search-box').value = "uwo.ca"
+    search()
+}
+
+
+// toggle elements
 function displayUserMessage(message) {
     document.getElementById('user-message').innerHTML = message
     document.getElementById('user-message').style.display = "block"
@@ -12,12 +26,6 @@ function hideUserMessage() {
     document.getElementById('user-message').style.display = "none"
 }
 
-function newSearchResultLine(text, number) {
-    return `<li class="list-group-item d-flex justify-content-between align-items-center p-3">
-            ${text}
-            <span class="badge bg-primary rounded-pill">${number}</span>
-    </li>`
-}
 
 function searchLoadingOn() {
     document.getElementById('domain-search-button').innerHTML = `
@@ -27,95 +35,127 @@ function searchLoadingOn() {
 }
 
 function searchLoadingOff() {
-    document.getElementById('domain-search-button').innerHTML = `Search`
+    document.getElementById('domain-search-button').innerHTML = `Find email addresses`
 }
 
-async function search() {
-    searchLoadingOn()
+function demoTextOff() {
+    document.getElementById('demo-text').style.display = "none"
+}
 
-    // get domain from textbox
-    let domain = document.getElementById('domain-search-box').value
+function demoTextOn() {
+    document.getElementById('demo-text').style.display = "block"
+}
+
+function searchTuningOn() {
+    document.getElementById('search-tuner').style.display = "block"
+}
+
+function searchTuningOff() {
+    document.getElementById('search-tuner').style.display = "none"
+}
+
+
+// views
+function enterInitialView() {
+    // this view is the initial view when loading the webpage
+    demoTextOn()
+    // hideUserMessage()
+    searchTuningOff()
+    searchLoadingOff()
+}
+
+function enterLoadingView() {
+    // this is the view after the search has been submitted, but before the results appear
+    demoTextOff()
+    searchLoadingOn()
+}
+
+function enterSearchView() {
+    // this view is the initial view when loading the webpage
+    demoTextOff()
+    searchTuningOn()
+    hideUserMessage()
+    searchLoadingOff()
+}
+
+let email_obj
+let n_of_displayed_personal = 0  // number of currently displayed personal emails
+let n_of_displayed_generic = 0  // number of currently displayed generic emails
+
+async function displayEmails(emailType, display_n=10) {
+
+    if (emailType == "personal") {
+
+        n_of_displayed_personal = 0
+        let output = ""
+        let i = 0
+        while (n_of_displayed_personal < display_n) {
+
+            let element = email_obj[i]
+
+            if (element.type == "personal") {
+                output += newSearchResultLine(element.email, element.type) // element.n_appearances)
+                n_of_displayed_personal += 1
+            }
+            i+=1
+        }
+
+        document.getElementById('search-results').innerHTML = output
+
+    } else if (emailType == "generic") {
+
+        n_of_displayed_generic = 0
+        let output = ""
+        let i = 0
+        while (n_of_displayed_generic < display_n) {
+
+            let element = email_obj[i]
+
+            if (element.type == "generic") {
+                output += newSearchResultLine(element.email, element.type) // element.n_appearances)
+                n_of_displayed_generic += 1
+            }
+            i+=1
+        }
+
+        document.getElementById('search-results').innerHTML = output
+
+
+    }
+}
+
+
+async function search() {
+    enterLoadingView()
+
+    let domain = document.getElementById('domain-search-box').value  // get domain from textbox
 
     // TODO: if this takes longer than n seconds, display an error
     let req = await fetch(`/.netlify/functions/process?domain=${domain}`)
 
-    // get data from database
-    // end point will return either an error or a list of domains
-
-    console.log(req)
+    // console.log(req)
 
     let rt = await req.text()
     let obj = await JSON.parse(rt)
 
-    if (req.status != 200) {
+    if (req.status != 200) {  // error has occurred
 
-        // display message from
         displayUserMessage(`Error: ${obj.message}`)
-        searchLoadingOff()
+        enterInitialView()
         return
 
     } else {
 
-        // hide user message? hideUserMessage()
+        email_obj = obj.results
+        console.log(email_obj)
 
         // display all enteries
-        output = ""
-        // console.log(rt)
-        await obj.results.forEach(
-            element => {
-                output += newSearchResultLine(element.email, element.type) // element.n_appearances)
-            }
-        )
-        document.getElementById('search-results').innerHTML = output
+        displayEmails("personal", 10)
 
-        searchLoadingOff()
+        enterSearchView()
+
+        return
     }
-
-
-    // .then(r => r.text())
-    // .then(rt => JSON.parse(rt))
-    // .then(obj => displayUserMessage(obj.domain))
-
-    // // basic validitation
-    // // const isValidDomain = require("is-valid-domain")  // use this on the endpoint to validate domain before searching!!!
-    // if(!isValidDomain(domain)){
-    //     // false, display message to user
-    //     displayUserMessage("Domain is invalid")
-    //     return
-    // }
-    //
-    // // if true, send request to endpoint
-    // displayUserMessage("Searching...")
-    //
-    // // use domain to hit endpoint, output is json
-    // // fetch(`domain.com/api/?${domain}`)
-    // //     .then(json_text => JSON.parse(json_text))
-    // //     .then() // create a list of all the unique emails for a given domain
-    // //     .then() // generate the html
-    //
-    // let obj = {
-    //   "results": [
-    //     {
-    //       "email": "example@domain.com",
-    //       "urls_found_at": [
-    //         "domain.com/contact",
-    //         "domain.com/about",
-    //         "someblog.com/article-123"
-    //         ]
-    //     },
-    //     {
-    //       "email": "test@domain.com",
-    //       "urls_found_at": [
-    //          "domain.com/about",
-    //          "domain.com/slacshsh"
-    //       ]
-    //     }
-    //   ]
-    // }
-    //
-    // hideUserMessage()
-    //
-    // displaySearchResults()
 
 
 }
