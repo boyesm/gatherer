@@ -54,11 +54,19 @@ function searchTuningOff() {
     document.getElementById('search-tuner').style.display = "none"
 }
 
+function loadMoreButtonOn() {
+    document.getElementById('load-more-button').style.display = "block"
+}
+
+function loadMoreButtonOff() {
+    document.getElementById('load-more-button').style.display = "none"
+}
 
 // views
 function enterInitialView() {
     // this view is the initial view when loading the webpage
     demoTextOn()
+    loadMoreButtonOff()
     // hideUserMessage()
     searchTuningOff()
     searchLoadingOff()
@@ -76,15 +84,22 @@ function enterSearchView() {
     searchTuningOn()
     hideUserMessage()
     searchLoadingOff()
+    loadMoreButtonOn()
 }
+
 
 let email_obj
 let n_of_displayed_personal = 0  // number of currently displayed personal emails
 let n_of_displayed_generic = 0  // number of currently displayed generic emails
+let currently_displayed = 10
+let current_displayed_type
 
-async function displayEmails(emailType, display_n=10) {
+// the state code in here is not great. a few things that shouldn't happen, happen. no time to fix them.
+async function displayEmails(emailType, display_n) {
 
     if (emailType == "personal") {
+
+        current_displayed_type = "personal"
 
         n_of_displayed_personal = 0
         let output = ""
@@ -104,6 +119,8 @@ async function displayEmails(emailType, display_n=10) {
 
     } else if (emailType == "generic") {
 
+        current_displayed_type = "generic"
+
         n_of_displayed_generic = 0
         let output = ""
         let i = 0
@@ -122,6 +139,11 @@ async function displayEmails(emailType, display_n=10) {
 
 
     }
+}
+
+function loadMore(emailType){
+    currently_displayed += 10
+    displayEmails(current_displayed_type, currently_displayed)
 }
 
 
