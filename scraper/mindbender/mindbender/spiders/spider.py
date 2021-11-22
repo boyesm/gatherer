@@ -33,7 +33,7 @@ class SpiderClass(scrapy.Spider):
 
         create_dirs(html_saves_dir, json_saves_dir, csv_saves_dir)
 
-        df = pd.read_csv(Path(f'./{input_csv_name}')) # , index_col=0)
+        df = pd.read_csv(Path(f'./{input_csv_name}'), index_col=0)
         self.urls = df[url_column_name].to_list()
 
         self.meta = {
