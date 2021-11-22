@@ -4,3 +4,4 @@
 *.pyc
 # Local Netlify folder
 .netlify
+/scraper/crawls/
