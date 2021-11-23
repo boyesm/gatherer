@@ -92,7 +92,7 @@ COOKIES_ENABLED = False
 # Some settings to increase performance on large crawls
 SCHEDULER_PRIORITY_QUEUE = 'scrapy.pqueues.DownloaderAwarePriorityQueue'
 REACTOR_THREADPOOL_MAXSIZE = 20
-# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'INFO'
 RETRY_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
 AJAXCRAWL_ENABLED = True

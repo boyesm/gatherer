@@ -98,6 +98,7 @@ class SpiderClass(scrapy.Spider):
                     self.email_collection.insert_one(out_obj)
 
                 except:
+                    self.log("database error")
 
 
                 yield out_obj # save data to external file (.csv, .jl, .json)
