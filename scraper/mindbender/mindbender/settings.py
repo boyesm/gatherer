@@ -33,7 +33,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 32
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -70,7 +70,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 32
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+# AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 #AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
@@ -89,6 +89,21 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 32
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# Some settings to increase performance on large crawls
+SCHEDULER_PRIORITY_QUEUE = 'scrapy.pqueues.DownloaderAwarePriorityQueue'
+REACTOR_THREADPOOL_MAXSIZE = 20
+# LOG_LEVEL = 'INFO'
+RETRY_ENABLED = False
+DOWNLOAD_TIMEOUT = 15
+AJAXCRAWL_ENABLED = True
+
+# BFO
+DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
+SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
+
+
+
 from pathlib import Path
 
 
@@ -98,7 +113,7 @@ html_saves_dir = Path(saves_dir / "html")
 json_saves_dir = Path(saves_dir / "json")
 csv_saves_dir = Path(saves_dir / "csv")
 
-input_csv_name = 'urls.csv'  # TODO: change this
+input_csv_name = 'company_urls.csv'  # TODO: change this
 url_column_name = 'urls'  # TODO: change this
 
 

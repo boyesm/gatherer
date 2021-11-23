@@ -43,7 +43,7 @@ class SpiderClass(scrapy.Spider):
         client = pymongo.MongoClient(
             "mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
         db = client.gatherer
-        self.email_collection = db.email
+        self.email_collection = db.email2
 
 
     def start_requests(self):
@@ -80,31 +80,42 @@ class SpiderClass(scrapy.Spider):
 
         # parse out emails
         emails = parse_emails(response)
-
-        # remove dupes
-        emails = list(set(emails))
+        self.log(f"emails: {emails}")
 
         for email in emails:
 
-            out_obj = {
-                'email': email,
-                'email_domain': email.split('@')[1],
-                'timestamp': int(time.time()),
-                'url': response.url,  # page URL
-            }
+            try:
 
-            self.email_collection.insert_one(out_obj)
+                out_obj = {
+                    'email': email[0],
+                    'email_domain': email[0].split('@')[1],
+                    'email_status': email[1],
+                    'timestamp': int(time.time()),
+                    'url': response.url,  # page URL
+                }
 
-            yield out_obj # save data to external file (.csv, .jl, .json)
+                try:
+                    self.email_collection.insert_one(out_obj)
+
+                except:
+
+
+                yield out_obj # save data to external file (.csv, .jl, .json)
+
+            except:
+
+                pass
 
         domain = urlparse(response.url).netloc
 
         self.log(domain)
 
-        le = LinkExtractor(allow_domains=domain)
+        le = LinkExtractor(deny_domains=[
+            "facebook.com", "instagram.com", "youtube.com", "twitter.com", "linkedin.com", "twitch.tv", "imgur.com", "gyfcat.com", "youtu.be"
+        ])
 
         for link in le.extract_links(response):
-            self.log(link.url)
+            # self.log(link.url)
             yield response.follow(link.url, callback=self.parse)
 
         domain = urlparse(response.url).netloc

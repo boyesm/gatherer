@@ -3,8 +3,10 @@ import logging as lg
 from lxml import html, etree
 from lxml.html.clean import Cleaner
 import re
-from email_validator import validate_email, EmailNotValidError
-    
+from validate_email import validate_email_or_fail
+from validate_email.exceptions import *
+
+
 def create_dirs(*dirs):
     for dir in dirs:
         if not os.path.exists(dir):
@@ -29,14 +31,11 @@ def inner_html(response):
 
 def parse_emails(response):
     t = []
+    ve = []
     try:
         html_str = inner_html(response.text)
         for e in re.findall("[\w.+-]+@[\w-]+\.[\w.-]+", html_str):
-            try:
-                valid = validate_email(e)
-                t.append(valid.email)
-            except EmailNotValidError as e:
-                pass
+            t.append(e)
 
     except Exception as e:
         lg.exception(f"Email processing error 1: {e}")
@@ -44,20 +43,45 @@ def parse_emails(response):
     try:
         tree = etree.HTML(response.text)
         emails = tree.xpath("//a[contains(@href,'mailto')]")
-        for email in emails:
-            sanitized_email = email.get("href").replace("mailto:", "").lower().split("?")[0]
-            try:
-                valid = validate_email(sanitized_email)
-                t.append(valid.email)
-            except EmailNotValidError as e:
-                pass
+        for e in emails:
+            e = e.get("href").replace("mailto:", "").lower().split("?")[0]
+            t.append(e)
 
     except Exception as e:
         lg.exception(f"Email processing error 2: {e}")
 
+    # clean up emails
+    for i, e in enumerate(t):
+        try:
+            e = e.lower()
+            e = e.strip()
 
-    return t
+            e = re.sub("%[A-Fa-f0-9]{2}", "", e)  # replace all URL encoding characters
 
+            t[i] = e
+
+        except Exception as e:
+            lg.info(f"failed while cleaning up emails: {e}")
+
+    # remove dupes
+    t = list(set(t))
+
+    print(f"unprocessed emails: {t}")
+
+    # verify emails
+    for e in t:
+        try:
+            if validate_email_or_fail(e, check_smtp=False):
+                ve.append([e, "dns verified"])
+
+        except (AddressFormatError, DomainBlacklistedError, DomainNotFoundError, NoMXError):
+
+            continue
+
+        except Exception as ex:
+            ve.append([e, str(ex).lower()[:-1]])
+
+    return ve
 
 
 '''

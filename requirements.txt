@@ -7,3 +7,4 @@ itemadapter
 lxml
 fake-useragent
 email-validator
+pyDNS
