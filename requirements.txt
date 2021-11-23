@@ -6,5 +6,4 @@ pymongo
 itemadapter
 lxml
 fake-useragent
-email-validator
-pyDNS
+py3-validate-email
