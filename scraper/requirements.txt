@@ -1,0 +1,9 @@
+requests
+pandas
+beautifulsoup4
+Scrapy
+pymongo
+itemadapter
+lxml
+fake-useragent
+py3-validate-email
