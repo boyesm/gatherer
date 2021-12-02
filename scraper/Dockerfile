@@ -15,10 +15,12 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
-COPY functions.py ./
-RUN mkdir ./mindbender
-COPY mindbender/ ./mindbender/
+#COPY requirements.txt ./
+#COPY functions.py ./
+#RUN mkdir ./mindbender
+#COPY mindbender/ ./mindbender/
+
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
