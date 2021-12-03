@@ -1,0 +1,28 @@
+# start tor proxy
+docker run -d \
+--name torproxy \
+--restart unless-stopped \
+-p 9050:9050 \
+tor_proxy
+
+
+# start proxy converter
+docker run -itd \
+--name proxytranslator \
+--restart unless-stopped \
+-p 8181:8181 \
+mosajjal/pproxy:latest \
+-l http://:8181 \
+-r socks5://10.0.0.52:9050 \
+-vv
+
+
+# start scraper
+docker run \
+--name gatherer-scraper \
+--restart unless-stopped \
+--dns 8.8.8.8 \
+gatherer-scraper:latest
+
+
+
