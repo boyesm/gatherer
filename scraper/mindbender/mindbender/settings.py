@@ -22,14 +22,14 @@ DEPTH_LIMIT = 6
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 256
+CONCURRENT_REQUESTS = 200
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 #DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-CONCURRENT_REQUESTS_PER_DOMAIN = 32
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -113,15 +113,15 @@ html_saves_dir = Path(saves_dir / "html")
 json_saves_dir = Path(saves_dir / "json")
 csv_saves_dir = Path(saves_dir / "csv")
 
-input_csv_name = 'company_urls.csv'  # TODO: change this
-url_column_name = 'urls'  # TODO: change this
+input_csv_name = 'company_urls.csv'
+url_column_name = 'urls'
 
 
 ## PROXY CREDS ##
 # TODO: uncomment desired proxy creds
 # Data Center Zone
-username = 'lum-customer-c_7c9f2032-zone-data_center'
-password = 'tfcukm0dg8hv'
+# username = 'lum-customer-c_7c9f2032-zone-data_center'
+# password = 'tfcukm0dg8hv'
 
 # Residential Zone
 # username = 'lum-customer-c_7c9f2032-zone-residential'
@@ -129,6 +129,6 @@ password = 'tfcukm0dg8hv'
 
 
 ## Settings ##
-proxy_enabled = False
+# proxy_enabled = True
 save_html_to_gcs = False
 save_html_locally = False

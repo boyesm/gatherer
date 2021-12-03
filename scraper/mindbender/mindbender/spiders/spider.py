@@ -37,7 +37,8 @@ class SpiderClass(scrapy.Spider):
         self.urls = df[url_column_name].to_list()
 
         self.meta = {
-            'dont_merge_cookies': True
+            'dont_merge_cookies': True,
+            'proxy': "http://10.0.0.52:8181",
         }
 
         client = pymongo.MongoClient(
@@ -47,18 +48,8 @@ class SpiderClass(scrapy.Spider):
 
 
     def start_requests(self):
-        if proxy_enabled:
-            try:
-                proxy_num = self.state.get('proxy_num', 0)
-            except KeyError as e:
-                self.state['proxy_num'] = 0
 
         for url in self.urls:
-
-            if proxy_enabled:
-                proxy_num = self.state.get('proxy_num', 0) + 1
-                self.state['proxy_num'] = proxy_num
-                self.meta['proxy'] = f'{username}-session-{proxy_num}:{password}@zproxy.lum-superproxy.io:22225'
 
             try:
                 yield scrapy.Request(
