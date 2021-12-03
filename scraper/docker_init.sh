@@ -6,7 +6,7 @@ docker run -d \
 tor_proxy
 
 
-# start proxy converter
+# start proxy converter (can the 't' be removed here?)
 docker run -itd \
 --name proxytranslator \
 --restart unless-stopped \
@@ -19,7 +19,7 @@ mosajjal/pproxy:latest \
 
 # start scraper
 docker run \
---name gatherer-scraper \
+--name gscraper \
 --restart unless-stopped \
 --dns 8.8.8.8 \
 gatherer-scraper:latest
