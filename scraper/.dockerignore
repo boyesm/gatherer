@@ -1,5 +1,5 @@
 get_urls/
-*.md
-*.jl
-*.out
-*.sh
+**/*.sh
+**/*.sh
+**/*.sh
+**/*.sh

@@ -22,5 +22,6 @@ docker run \
 --name gscraper \
 --restart unless-stopped \
 --dns 8.8.8.8 \
---ulimit 65536
+--ulimit nofile=65536 \
 gatherer-scraper:latest
+
