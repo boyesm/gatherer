@@ -1,1 +1,1 @@
-scrapy crawl mindbender -s JOBDIR=./crawls/crawl
+nohup scrapy crawl mindbender -s JOBDIR=./crawls/crawl &
