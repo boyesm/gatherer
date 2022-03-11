@@ -35,3 +35,9 @@ docker run -it \
 gatherer-scraper:latest \
 bash
 
+# init database
+docker run -d \
+--name mongodb \
+-p 27017:27017 \
+-v gatherer-db:/data/db \
+mongo

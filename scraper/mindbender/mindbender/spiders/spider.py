@@ -41,8 +41,11 @@ class SpiderClass(scrapy.Spider):
             'proxy': "http://10.0.0.52:8181",
         }
 
-        client = pymongo.MongoClient(
-            "mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
+
+        # TODO: change this to local mongodb
+        # client = pymongo.MongoClient(
+        #     "mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
+        client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
         db = client.gatherer
         self.email_collection = db.email2
 
