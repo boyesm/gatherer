@@ -38,16 +38,14 @@ class SpiderClass(scrapy.Spider):
 
         self.meta = {
             'dont_merge_cookies': True,
-            'proxy': "http://10.0.0.52:8181",
+            'proxy': "http://127.0.0.1:8181",
         }
 
-
-        # TODO: change this to local mongodb
         # client = pymongo.MongoClient(
         #     "mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
         client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
         db = client.gatherer
-        self.email_collection = db.email2
+        self.email_collection = db.emails
 
 
     def start_requests(self):

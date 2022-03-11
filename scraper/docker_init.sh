@@ -13,8 +13,11 @@ docker run -itd \
 -p 8181:8181 \
 mosajjal/pproxy:latest \
 -l http://:8181 \
--r socks5://10.0.0.52:9050 \
 -vv
+
+# I removed these \/\/\/\/, and it still seems to work. Keeping here is case I run into problems later.
+# -r socks5://10.0.0.71:9050 \
+#-r socks5://127.0.0.1:9050
 
 
 # start scraper (background)
