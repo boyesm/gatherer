@@ -17,11 +17,21 @@ mosajjal/pproxy:latest \
 -vv
 
 
-# start scraper
-docker run \
+# start scraper (background)
+#docker run \
+#--name gscraper \
+#--restart unless-stopped \
+#--dns 8.8.8.8 \
+#--ulimit nofile=65536 \
+#gatherer-scraper:latest
+
+
+# start scraper (foreground)
+docker run -it \
 --name gscraper \
 --restart unless-stopped \
 --dns 8.8.8.8 \
 --ulimit nofile=65536 \
-gatherer-scraper:latest
+gatherer-scraper:latest \
+bash
 
