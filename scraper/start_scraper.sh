@@ -1,0 +1,1 @@
+scrapy crawl mindbender -s JOBDIR=./crawls/crawl
