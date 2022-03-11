@@ -30,13 +30,13 @@ mosajjal/pproxy:latest \
 
 
 # start scraper (foreground)
-docker run -it \
---name gscraper \
---restart unless-stopped \
---dns 8.8.8.8 \
---ulimit nofile=65536 \
-gatherer-scraper:latest \
-bash
+#docker run -it \
+#--name gscraper \
+#--restart unless-stopped \
+#--dns 8.8.8.8 \
+#--ulimit nofile=65536 \
+#gatherer-scraper:latest \
+#bash
 
 # init database
 docker run -d \
