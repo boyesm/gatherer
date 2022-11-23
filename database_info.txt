@@ -1,8 +1,0 @@
-Command to type in command line:
-mongosh "mongodb+srv://cluster0.iuyhs.mongodb.net/gatherer" --username gatherer
-
-db.createUser({user:"gatherer",pwd:"bertha123",customData:{},roles:[{role:"readWrite",db:"gatherer"},{role:"dbAdmin",db:"gatherer"},],authenticationRestrictions:[],mechanisms:[]})
-
-
-
-{user:"website",pwd:"bertha123"customData:{},roles:[{role:"read",db:"gatherer"},],authenticationRestrictions:[],mechanisms:[],passwordDigestor:""}

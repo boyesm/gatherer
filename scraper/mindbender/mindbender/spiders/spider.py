@@ -117,25 +117,6 @@ class SpiderClass(scrapy.Spider):
         #     f.write(response.body)
 
 
-        '''
-            https://docs.exactbuyer.com/contact-enrichment/enrichment
-            try:
-                eb_res = requests.get(  # enrich
-                    "https://api.exactbuyer.com/v1/enrich",
-                    headers={'X-API-Key': 'z0nGZdvXXQ5'},
-                    params={'email': email}
-                )
-            except Exception as e:
-                print(f'{job_id}: eb api request failed {e}')
-                continue
-    
-            if eb_res.status_code != 200:
-                print(f'{job_id}: eb cant enrich contact')
-                continue
-        
-        '''
-
-
 
 
     def closed(self, reason):

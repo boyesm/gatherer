@@ -83,13 +83,3 @@ def parse_emails(response):
 
     return ve
 
-
-'''
-
-
-client = pymongo.MongoClient("mongodb+srv://admin:Mk4bCarwSAp6V7AXK42U@cluster0.iuyhs.mongodb.net/gatherer?retryWrites=true&w=majority")
-db = client.gatherer
-email_collection = db.email
-
-
-'''
