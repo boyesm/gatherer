@@ -2,7 +2,7 @@
 
 Gatherer is a free alternative to Hunter.io. Users can input a domain in our website and we will search our database for
 all the emails that we've found across the web that match that domain. For example, if a user is looking for the professional emails
-of employees of GitHub, they can input the domain `github.com` into our service and emails that end in that domain like `alex@github.com`
+of GitHub employees, they can input the domain `github.com` into our service and emails that end in that domain like `alex@github.com`
 or `todd@github.com` will appear.
 
 ## How it works
