@@ -7,3 +7,4 @@ itemadapter
 lxml
 fake-useragent
 py3-validate-email
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
